@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurr Kurr</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    color:#fff;
+    background:
+        radial-gradient(circle at top,#3a2a00 0%,#151515 38%,#070707 100%);
+    overflow-x:hidden;
+}
+
+.container{
+    width:min(1100px,92%);
+    margin:auto;
+}
+
+header{
+    padding:24px 0;
+}
+
+.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#d4af37;
+}
+
+nav{
+    display:flex;
+    gap:24px;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    font-size:14px;
+    transition:.2s;
+}
+
+nav a:hover{
+    color:#d4af37;
+}
+
+.hero{
+    min-height:calc(100vh - 90px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:50px 0;
+}
+
+.hero-content{
+    width:100%;
+}
+
+.badge{
+    color:#d4af37;
+    font-size:13px;
+    letter-spacing:4px;
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:clamp(48px,10vw,100px);
+    line-height:.95;
+    color:#d4af37;
+    letter-spacing:3px;
+    text-shadow:0 0 30px rgba(212,175,55,.25);
+}
+
+.subtitle{
+    margin:22px auto 32px;
+    color:#aaa;
+    font-size:16px;
+    max-width:550px;
+    line-height:1.6;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 30px;
+    border:1px solid #d4af37;
+    border-radius:30px;
+    background:#d4af37;
+    color:#111;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.25s;
+}
+
+.btn:hover{
+    background:transparent;
+    color:#d4af37;
+}
+
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:45px;
+    margin-top:55px;
+}
+
+.stat{
+    text-align:center;
+}
+
+.stat strong{
+    display:block;
+    color:#d4af37;
+    font-size:25px;
+    margin-bottom:6px;
+}
+
+.stat span{
+    color:#888;
+    font-size:12px;
+}
+
+.story{
+    margin-top:55px;
+    color:#555;
+    font-size:11px;
+    letter-spacing:4px;
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:18px 0;
+    }
+
+    .container{
+        width:90%;
+    }
+
+    .nav{
+        flex-direction:column;
+        gap:14px;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    nav{
+        width:100%;
+        justify-content:center;
+        gap:18px;
+    }
+
+    nav a{
+        font-size:13px;
+    }
+
+    .hero{
+        min-height:calc(100vh - 120px);
+        padding:30px 0 50px;
+    }
+
+    .badge{
+        font-size:11px;
+        letter-spacing:3px;
+    }
+
+    h1{
+        font-size:18vw;
+        letter-spacing:1px;
+    }
+
+    .subtitle{
+        font-size:14px;
+        line-height:1.5;
+        padding:0 10px;
+        margin:18px auto 26px;
+    }
+
+    .btn{
+        padding:13px 25px;
+        font-size:14px;
+    }
+
+    .stats{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:12px;
+        margin-top:45px;
+    }
+
+    .stat strong{
+        font-size:21px;
+    }
+
+    .stat span{
+        font-size:10px;
+    }
+
+    .story{
+        margin-top:40px;
+        font-size:9px;
+        letter-spacing:2px;
+    }
+}
+
+@media(max-width:360px){
+
+    nav{
+        gap:12px;
+    }
+
+    nav a{
+        font-size:12px;
+    }
+
+    .stats{
+        gap:5px;
+    }
+
+    .stat strong{
+        font-size:19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="nav">
+            <div class="logo">🐦 KURR KURR</div>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="members.html">Members</a>
+                <a href="gallery.html">Gallery</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="hero">
+    <div class="container hero-content">
+
+        <div class="badge">WELCOME TO</div>
+
+        <h1>KURR KURR</h1>
+
+        <p class="subtitle">
+            One group. One story. Countless memories.
+        </p>
+
+        <a class="btn" href="members.html">
+            ENTER GROUP
+        </a>
+
+        <div class="stats">
+            <div class="stat">
+                <strong>8</strong>
+                <span>MEMBERS</span>
+            </div>
+
+            <div class="stat">
+                <strong>5</strong>
+                <span>ONLINE</span>
+            </div>
+
+            <div class="stat">
+                <strong>6</strong>
+                <span>MEMORIES</span>
+            </div>
+        </div>
+
+        <div class="story">
+            ONE GROUP • ONE STORY
+        </div>
+
+    </div>
+</main>
+
+</body>
+</html>

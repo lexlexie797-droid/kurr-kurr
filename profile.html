@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kurr Kurr - Profile</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #3a2a0a, #151515 45%, #080808);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile {
+    width: 100%;
+    max-width: 430px;
+    text-align: center;
+    padding: 30px 22px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid #4b3b16;
+    border-radius: 26px;
+    box-shadow: 0 0 35px rgba(201,162,39,0.08);
+    animation: profileIn 0.5s ease;
+}
+
+@keyframes profileIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.avatar {
+    width: 115px;
+    height: 115px;
+    margin: auto;
+    border: 1px solid #c9a227;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+    background: rgba(201,162,39,0.05);
+    box-shadow: 0 0 25px rgba(201,162,39,0.15);
+}
+
+.small-title {
+    color: #c9a227;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-top: 18px;
+}
+
+h1 {
+    margin: 8px 0;
+    font-size: 36px;
+    letter-spacing: 4px;
+}
+
+.online {
+    font-size: 13px;
+    margin: 8px 0 15px;
+}
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.green {
+    background: #4caf50;
+    box-shadow: 0 0 8px #4caf50;
+}
+
+.red {
+    background: #777;
+}
+
+.line {
+    width: 60px;
+    height: 1px;
+    background: #c9a227;
+    margin: 18px auto;
+}
+
+.info {
+    text-align: left;
+    background: rgba(0,0,0,0.18);
+    border: 1px solid #33280f;
+    border-radius: 16px;
+    padding: 16px;
+    color: #aaa;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.info-row {
+    margin-bottom: 8px;
+}
+
+.info-row:last-child {
+    margin-bottom: 0;
+}
+
+.label {
+    color: #c9a227;
+    font-weight: bold;
+}
+
+.member-number {
+    margin-top: 15px;
+    color: #555;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.back {
+    display: inline-block;
+    padding: 11px 14px;
+    background: #c9a227;
+    color: #111;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.back:active {
+    transform: scale(0.94);
+}
+
+.secondary {
+    background: transparent;
+    color: #c9a227;
+    border: 1px solid #4b3b16;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="profile">
+
+    <div class="avatar" id="emoji">
+        🐒
+    </div>
+
+    <div class="small-title">
+        KURR KURR MEMBER
+    </div>
+
+    <h1 id="name">
+        REN
+    </h1>
+
+    <div class="online" id="online"></div>
+
+    <div class="line"></div>
+
+    <div class="info">
+
+        <div class="info-row">
+            <span class="label">Status:</span>
+            <span id="status"></span>
+        </div>
+
+        <div class="info-row">
+            <span class="label">Info:</span>
+            <span id="info"></span>
+        </div>
+
+        <div class="info-row">
+            <span class="label">Skill:</span>
+            <span id="skill"></span>
+        </div>
+
+    </div>
+
+    <div class="member-number" id="memberNumber"></div>
+
+    <div class="buttons">
+
+        <a class="back secondary" id="prev" href="#">
+            ← Previous
+        </a>
+
+        <a class="back" href="index.html">
+            🏠 Home
+        </a>
+
+        <a class="back secondary" href="members.html">
+            👥 Members
+        </a>
+
+        <a class="back secondary" id="next" href="#">
+            Next →
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+const members = {
+
+    ren: {
+        emoji: "🐒",
+        name: "REN",
+        online: true,
+        status: "Sedang berfikir...",
+        info: "Tidak jumpa apa yang difikirkan.",
+        skill: "Makan → tidur → ulang."
+    },
+
+    adriel: {
+        emoji: "🦍",
+        name: "ADRIEL",
+        online: true,
+        status: "Terancam lapar.",
+        info: "Misi: Mencari makanan.",
+        skill: "Boleh dengar bunyi plastik makanan dari jarak 500 meter."
+    },
+
+    slayvester: {
+        emoji: "🐈",
+        name: "SLAYVESTER",
+        online: false,
+        status: "🐈",
+        info: "Mission: Mencari makanan.",
+        skill: "Reward: Tidak diketahui."
+    },
+
+    bryan: {
+        emoji: "🐶",
+        name: "BRYAN",
+        online: true,
+        status: "AMARAN.",
+        info: "Volume: 200%.",
+        skill: "Boleh mengganggu satu kawasan."
+    },
+
+    nano: {
+        emoji: "🐻",
+        name: "NANO",
+        online: false,
+        status: "AFK.",
+        info: "Lokasi: Katil.",
+        skill: "Respawn: Bila lapar."
+    },
+
+    jeremy: {
+        emoji: "🦉",
+        name: "JEREMY",
+        online: true,
+        status: "👁️👁️",
+        info: "Mission: Mencari jawapan kepada soalan yang tidak pernah ditanya.",
+        skill: "Boleh muncul secara tiba-tiba."
+    },
+
+    facrindan: {
+        emoji: "🫏",
+        name: "FACRINDAN",
+        online: true,
+        status: "Berbahaya untuk group chat.",
+        info: "Ammo: Unlimited.",
+        skill: "Boleh menaikkan jumlah mesej 300%."
+    },
+
+    noel: {
+        emoji: "🐛",
+        name: "NOEL",
+        online: false,
+        status: "Loading...",
+        info: "Progress: 99%.",
+        skill: "Error: Tidak pernah sampai 100%. 🐛"
+    }
+
+};
+
+const order = [
+    "ren",
+    "adriel",
+    "slayvester",
+    "bryan",
+    "nano",
+    "jeremy",
+    "facrindan",
+    "noel"
+];
+
+const id = new URLSearchParams(location.search).get("name");
+const member = members[id];
+
+const emoji = document.getElementById("emoji");
+const name = document.getElementById("name");
+const online = document.getElementById("online");
+const status = document.getElementById("status");
+const info = document.getElementById("info");
+const skill = document.getElementById("skill");
+const memberNumber = document.getElementById("memberNumber");
+
+if (member) {
+
+    emoji.textContent = member.emoji;
+    name.textContent = member.name;
+    status.textContent = member.status;
+    info.textContent = member.info;
+    skill.textContent = member.skill;
+
+    online.innerHTML = member.online
+        ? '<span class="dot green"></span>Online'
+        : '<span class="dot red"></span>Offline';
+
+    const number = order.indexOf(id) + 1;
+
+    memberNumber.textContent =
+        "MEMBER " + String(number).padStart(2, "0") + " / 08";
+
+    document.title = "Kurr Kurr - " + member.name;
+
+} else {
+
+    emoji.textContent = "❓";
+    name.textContent = "MEMBER TIDAK DIJUMPAI";
+    online.textContent = "";
+    status.textContent = "Unknown";
+    info.textContent = "Profile ini tidak wujud.";
+    skill.textContent = "Cuba kembali ke Members.";
+    memberNumber.textContent = "";
+
+}
+
+const current = order.indexOf(id);
+
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+if (current > 0) {
+
+    prev.href =
+        "profile.html?name=" + order[current - 1];
+
+} else {
+
+    prev.style.visibility = "hidden";
+
+}
+
+if (current >= 0 && current < order.length - 1) {
+
+    next.href =
+        "profile.html?name=" + order[current + 1];
+
+} else {
+
+    next.style.visibility = "hidden";
+
+}
+
+</script>
+
+</body>
+</html>

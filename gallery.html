@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurr Kurr - Gallery</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #3a2a0a, #151515 45%, #080808);
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 35px 20px 20px;
+}
+
+.small-title {
+    color: #c9a227;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+h1 {
+    margin: 10px 0;
+    font-size: 34px;
+    letter-spacing: 5px;
+}
+
+header p {
+    color: #999;
+}
+
+.gallery {nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+nav a {
+    color: #c9a227;
+    text-decoration: none;
+    padding: 9px 12px;
+    border: 1px solid #4b3b16;
+    border-radius: 20px;
+    font-size: 13px;
+}
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.photo {
+    aspect-ratio: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid #4b3b16;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer
+
+}.photo:active {
+    transform: scale(0.94);
+    border-color: #c9a227;
+}
+
+.back {
+    display: block;
+    width: fit-content;
+    margin: 10px auto 30px;
+    padding: 12px 25px;
+    background: #c9a227;
+    color: #111;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="small-title">KURR KURR</div>
+    <h1>GALLERY</h1>
+    <p>Memories of the group</p>
+<div style="color:#c9a227; font-size:12px; margin-top:10px;">
+    6 MEMORIES
+</div>
+
+    <nav>
+        <a href="index.html">🏠 Home</a>
+        <a href="members.html">👥 Members</a>
+        <a href="gallery.html">📸 Gallery</a>
+    </nav>
+</header>
+
+<div class="gallery">
+    <div class="photo">📷</div>
+    <div class="photo">📷</div>
+    <div class="photo">📷</div>
+    <div class="photo">📷</div>
+    <div class="photo">📷</div>
+    <div class="photo">📷</div>
+</div>
+
+<a class="back" href="index.html">🏠 Back Home</a>
+
+</body>
+</html>

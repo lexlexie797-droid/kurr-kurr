@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kurr Kurr - Members</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #3a2a0a, #151515 45%, #080808);
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 30px 20px 15px;
+}
+
+.small-title {
+    color: #c9a227;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+h1 {
+    margin: 10px 0;
+    font-size: 34px;
+    letter-spacing: 5px;
+}
+
+header p {
+    color: #999;
+    font-size: 14px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+}
+
+nav a {
+    color: #c9a227;
+    text-decoration: none;
+    padding: 9px 12px;
+    border: 1px solid #4b3b16;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.search {
+    display: block;
+    width: calc(100% - 40px);
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 13px 16px;
+    border-radius: 25px;
+    border: 1px solid #4b3b16;
+    background: #151515;
+    color: white;
+    outline: none;
+}
+
+.search:focus {
+    border-color: #c9a227;
+}
+
+.count {
+    text-align: center;
+    color: #aaa;
+    font-size: 12px;
+    margin: 15px 0;
+}
+
+.count span {
+    color: #c9a227;
+}
+
+.members {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.member {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid #4b3b16;
+    border-radius: 18px;
+    padding: 22px 10px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.member:active {
+    transform: scale(0.94);
+    border-color: #c9a227;
+}
+
+.emoji {
+    font-size: 40px;
+}
+
+.name {
+    margin-top: 10px;
+    color: #c9a227;
+    font-weight: bold;
+}
+
+.status {
+    margin-top: 7px;
+    font-size: 11px;
+}
+
+.dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+.green {
+    background: #4caf50;
+    box-shadow: 0 0 6px #4caf50;
+}
+
+.red {
+    background: #777;
+}
+
+.hidden {
+    display: none;
+}
+
+.back {
+    display: block;
+    width: fit-content;
+    margin: 10px auto 30px;
+    padding: 12px 25px;
+    background: #c9a227;
+    color: #111;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="small-title">THE GROUP</div>
+
+    <h1>KURR KURR</h1>
+
+    <p>8 Members • One Group</p>
+
+    <nav>
+        <a href="index.html">🏠 Home</a>
+        <a href="members.html">👥 Members</a>
+        <a href="gallery.html">📸 Gallery</a>
+    </nav>
+
+</header>
+
+<input
+    class="search"
+    id="search"
+    type="search"
+    placeholder="🔍 Search member..."
+>
+
+<div class="count">
+    <span id="onlineCount">5</span> Online •
+    <span id="offlineCount">3</span> Offline
+</div>
+
+<div class="members" id="members">
+
+    <a class="member" data-name="ren" href="profile.html?name=ren">
+        <div class="emoji">🐒</div>
+        <div class="name">Ren</div>
+        <div class="status">
+            <span class="dot green"></span>Online
+        </div>
+    </a>
+
+    <a class="member" data-name="adriel" href="profile.html?name=adriel">
+        <div class="emoji">🦍</div>
+        <div class="name">Adriel</div>
+        <div class="status">
+            <span class="dot green"></span>Online
+        </div>
+    </a>
+
+    <a class="member" data-name="slayvester" href="profile.html?name=slayvester">
+        <div class="emoji">🐈</div>
+        <div class="name">Slayvester</div>
+        <div class="status">
+            <span class="dot red"></span>Offline
+        </div>
+    </a>
+
+    <a class="member" data-name="bryan" href="profile.html?name=bryan">
+        <div class="emoji">🐶</div>
+        <div class="name">Bryan</div>
+        <div class="status">
+            <span class="dot green"></span>Online
+        </div>
+    </a>
+
+    <a class="member" data-name="nano" href="profile.html?name=nano">
+        <div class="emoji">🐻</div>
+        <div class="name">Nano</div>
+        <div class="status">
+            <span class="dot red"></span>Offline
+        </div>
+    </a>
+
+    <a class="member" data-name="jeremy" href="profile.html?name=jeremy">
+        <div class="emoji">🦉</div>
+        <div class="name">Jeremy</div>
+        <div class="status">
+            <span class="dot green"></span>Online
+        </div>
+    </a>
+
+    <a class="member" data-name="facrindan" href="profile.html?name=facrindan">
+        <div class="emoji">🫏</div>
+        <div class="name">facrindan</div>
+        <div class="status">
+            <span class="dot green"></span>Online
+        </div>
+    </a>
+
+    <a class="member" data-name="noel" href="profile.html?name=noel">
+        <div class="emoji">🐛</div>
+        <div class="name">Noel</div>
+        <div class="status">
+            <span class="dot red"></span>Offline
+        </div>
+    </a>
+
+</div>
+
+<a class="back" href="index.html">🏠 Back Home</a>
+
+<script>
+
+const search = document.getElementById("search");
+const members = document.querySelectorAll(".member");
+
+search.addEventListener("input", function() {
+
+    const text = search.value.toLowerCase().trim();
+
+    members.forEach(function(member) {
+
+        const name = member.dataset.name;
+
+        if (name.includes(text)) {
+            member.classList.remove("hidden");
+        } else {
+            member.classList.add("hidden");
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
