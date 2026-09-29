@@ -74,6 +74,21 @@ nav a {
     border-color: #c9a227;
 }
 
+.add-button {
+    display: block;
+    width: calc(100% - 40px);
+    max-width: 300px;
+    margin: 15px auto;
+    padding: 13px;
+    border: none;
+    border-radius: 25px;
+    background: #c9a227;
+    color: #111;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
 .count {
     text-align: center;
     color: #aaa;
@@ -95,6 +110,7 @@ nav a {
 }
 
 .member {
+    position: relative;
     background: rgba(255,255,255,0.04);
     border: 1px solid #4b3b16;
     border-radius: 18px;
@@ -142,6 +158,19 @@ nav a {
     background: #777;
 }
 
+.delete {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    border: none;
+    background: #441111;
+    color: #ff7777;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .hidden {
     display: none;
 }
@@ -157,6 +186,69 @@ nav a {
     border-radius: 25px;
     font-weight: bold;
 }
+
+/* POPUP */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 380px;
+    background: #151515;
+    border: 1px solid #c9a227;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.modal-box h2 {
+    text-align: center;
+    color: #c9a227;
+    margin-top: 0;
+}
+
+.modal-box input,
+.modal-box select {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border-radius: 10px;
+    border: 1px solid #4b3b16;
+    background: #080808;
+    color: white;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.modal-buttons button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.save {
+    background: #c9a227;
+    color: #111;
+}
+
+.cancel {
+    background: #333;
+    color: white;
+}
 </style>
 </head>
 
@@ -168,7 +260,7 @@ nav a {
 
     <h1>KURR KURR</h1>
 
-    <p>8 Members • One Group</p>
+    <p><span id="totalCount">8</span> Members • One Group</p>
 
     <nav>
         <a href="index.html">🏠 Home</a>
@@ -184,6 +276,10 @@ nav a {
     type="search"
     placeholder="🔍 Search member..."
 >
+
+<button class="add-button" onclick="openModal()">
+    ＋ Add Member
+</button>
 
 <div class="count">
     <span id="onlineCount">5</span> Online •
@@ -260,18 +356,190 @@ nav a {
 
 <a class="back" href="index.html">🏠 Back Home</a>
 
+
+<!-- ADD MEMBER POPUP -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <h2>＋ Add Member</h2>
+
+        <input
+            type="text"
+            id="memberName"
+            placeholder="Nama member"
+        >
+
+        <input
+            type="text"
+            id="memberEmoji"
+            placeholder="Emoji contoh: 🐱"
+            maxlength="2"
+        >
+
+        <select id="memberStatus">
+            <option value="online">🟢 Online</option>
+            <option value="offline">⚫ Offline</option>
+        </select>
+
+        <div class="modal-buttons">
+
+            <button class="cancel" onclick="closeModal()">
+                Cancel
+            </button>
+
+            <button class="save" onclick="addMember()">
+                Add Member
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
 const search = document.getElementById("search");
-const members = document.querySelectorAll(".member");
+const membersContainer = document.getElementById("members");
+
+let savedMembers =
+    JSON.parse(localStorage.getItem("kurrKurrMembers")) || [];
+
+
+// OPEN POPUP
+
+function openModal() {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("memberName").focus();
+}
+
+
+// CLOSE POPUP
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+
+    document.getElementById("memberName").value = "";
+    document.getElementById("memberEmoji").value = "";
+    document.getElementById("memberStatus").value = "online";
+}
+
+
+// ADD MEMBER
+
+function addMember() {
+
+    const name =
+        document.getElementById("memberName").value.trim();
+
+    const emoji =
+        document.getElementById("memberEmoji").value.trim() || "👤";
+
+    const status =
+        document.getElementById("memberStatus").value;
+
+    if (!name) {
+        alert("Sila masukkan nama member.");
+        return;
+    }
+
+    const newMember = {
+        name: name,
+        emoji: emoji,
+        status: status
+    };
+
+    savedMembers.push(newMember);
+
+    localStorage.setItem(
+        "kurrKurrMembers",
+        JSON.stringify(savedMembers)
+    );
+
+    createMember(newMember);
+
+    closeModal();
+
+    updateCount();
+}
+
+
+// CREATE MEMBER
+
+function createMember(member) {
+
+    const card = document.createElement("div");
+
+    card.className = "member";
+    card.dataset.name = member.name.toLowerCase();
+
+    const statusClass =
+        member.status === "online" ? "green" : "red";
+
+    const statusText =
+        member.status === "online" ? "Online" : "Offline";
+
+    card.innerHTML = `
+        <button class="delete"
+            onclick="deleteMember(this, '${escapeName(member.name)}')">
+            ×
+        </button>
+
+        <a href="profile.html?name=${encodeURIComponent(member.name)}"
+           style="text-decoration:none;color:white;display:block;">
+
+            <div class="emoji">${member.emoji}</div>
+
+            <div class="name">${member.name}</div>
+
+            <div class="status">
+                <span class="dot ${statusClass}"></span>
+                ${statusText}
+            </div>
+
+        </a>
+    `;
+
+    membersContainer.appendChild(card);
+}
+
+
+// DELETE MEMBER
+
+function deleteMember(button, name) {
+
+    if (!confirm("Padam member " + name + "?")) {
+        return;
+    }
+
+    savedMembers =
+        savedMembers.filter(member => member.name !== name);
+
+    localStorage.setItem(
+        "kurrKurrMembers",
+        JSON.stringify(savedMembers)
+    );
+
+    button.parentElement.remove();
+
+    updateCount();
+}
+
+
+// SEARCH
 
 search.addEventListener("input", function() {
 
-    const text = search.value.toLowerCase().trim();
+    const text =
+        search.value.toLowerCase().trim();
 
-    members.forEach(function(member) {
+    document.querySelectorAll(".member").forEach(function(member) {
 
-        const name = member.dataset.name;
+        const name =
+            member.dataset.name.toLowerCase();
 
         if (name.includes(text)) {
             member.classList.remove("hidden");
@@ -282,6 +550,52 @@ search.addEventListener("input", function() {
     });
 
 });
+
+
+// LOAD SAVED MEMBERS
+
+savedMembers.forEach(function(member) {
+    createMember(member);
+});
+
+
+// UPDATE COUNTS
+
+function updateCount() {
+
+    const allMembers =
+        document.querySelectorAll(".member");
+
+    let online = 0;
+    let offline = 0;
+
+    allMembers.forEach(function(member) {
+
+        const dot =
+            member.querySelector(".dot");
+
+        if (dot.classList.contains("green")) {
+            online++;
+        } else {
+            offline++;
+        }
+
+    });
+
+    document.getElementById("onlineCount").textContent = online;
+    document.getElementById("offlineCount").textContent = offline;
+    document.getElementById("totalCount").textContent =
+        online + offline;
+}
+
+
+// ESCAPE NAME
+
+function escapeName(name) {
+    return name.replace(/'/g, "\\'");
+}
+
+updateCount();
 
 </script>
 
